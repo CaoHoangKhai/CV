@@ -1,0 +1,92 @@
+{
+  "profile": [
+    {
+      "name": "CAO HOANG KHAI",
+      "position": "BackEnd Developer",
+      "address": "Can Tho, Viet Nam",
+      "phone": "+84 834477131",
+      "email": "hoangcao230703@gmail.com",
+      "github": {
+        "username": "CaoHoangKhai",
+        "url": "https://github.com/CaoHoangKhai"
+      }
+    }
+  ],
+  "objective": [
+    {
+      "goal": "With a deep passion for technology and a strong foundation in system development, I am looking for a creative work environment where I can apply the knowledge I have gained to solve real-world challenges. I am always proactive in learning, improving my skills, and striving to become a proficient BackEnd Developer."
+    }
+  ],
+  "education": [
+    {
+      "university": "Can Tho University",
+      "location": "Can Tho City, Viet Nam",
+      "program": "Computer Science Student",
+      "start_year": "2021",
+      "expected_graduation_year": "Now"
+    }
+  ],
+  "technical_skills": [
+    {
+      "markup_and_styling": ["HTML", "CSS"],
+      "programming_languages": ["JavaScript", "PHP", "Python"],
+      "runtime_environments": ["NodeJS"],
+      "frameworks": ["Vue.js", "Express.js", "Flask"],
+      "database_management_systems": ["MongoDB", "MySQL"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Book Borrowing Registration Website",
+      "duration": "09/02/2025 – 28/03/2025",
+      "members": 1,
+      "repository": "https://github.com/CaoHoangKhai/LibraryConnect.git",
+      "description": "Book Borrowing Management Website allows administrators to manage book loans/returns and maintain a list of borrowers. The website enables users to search for, track, register for borrowing books, and efficiently manage book returns.",
+      "technologies": {
+        "frontend": "Vue",
+        "backend": "NodeJS",
+        "database": "MongoDB",
+        "tools": ""
+      }
+    },
+    {
+      "title": "Online Bookstore with Automated Data Integration",
+      "duration": "30/12/2024 – Now",
+      "members": 1,
+      "repository": "https://github.com/CaoHoangKhai/BookVerse.git",
+      "description": "Developed a platform for buying and selling books with features like product browsing and order management, news management, and user authentication. The system includes automated inventory synchronization, real-time data updates, and supports three roles: admin, seller, and user.",
+      "technologies": {
+        "frontend": "HTML, CSS, JavaScript",
+        "backend": "PHP",
+        "database": "MySQL",
+        "tools": ""
+      }
+    },
+    {
+      "title": "Rice Classification on Rice Dataset",
+      "duration": "19/09/2024 – 28/11/2024",
+      "members": 2,
+      "repository": "https://github.com/CaoHoangKhai/Rice_Classification.git",
+      "description": "This is a machine learning application designed to classify rice grains into categories with high accuracy. It supports manual data input and provides predictions along with probability scores for each class. Additionally, users can select and compare prediction results from different machine learning models.",
+      "technologies": {
+        "frontend": "",
+        "backend": "",
+        "database": "",
+        "tools": "Python for model development, Flask for web integration"
+      }
+    },
+    {
+      "title": "Rice Selling Website",
+      "duration": "30/03/2024 – 17/05/2024",
+      "members": 1,
+      "repository": "https://github.com/CaoHoangKhai/Website_Food_Marketplace.git",
+      "description": "Developed a web-based rice selling platform with admin and user roles. Features include product, user, order, and contact management. Supports product browsing, order placement, authentication, and responsive UI.",
+      "technologies": {
+        "frontend": "HTML, CSS, JavaScript",
+        "backend": "PHP",
+        "database": "MySQL",
+        "tools": ""
+      }
+    }
+  ]
+}
