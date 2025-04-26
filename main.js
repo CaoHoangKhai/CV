@@ -99,7 +99,7 @@ fetch("profile.json")
           ${project.technologies.database ? `Database: ${project.technologies.database}. ` : ""}
           ${project.technologies.tools ? `Tools: ${project.technologies.tools}.` : ""}
         </div>
-        <div><strong>Repository:</strong> <a href="${project.repository}" target="_blank">${project.repository}</a></div>
+        <div><strong>Repository:</strong> <a href="${project.repository}" target="_blank">GitHub</a></div>
         <hr>
       `;
       experienceContainer.appendChild(projectItem);
