@@ -16,9 +16,7 @@ fetch("profile.json")
     data.objective.forEach(objective => {
       const objectiveItem = document.createElement("div");
       objectiveItem.className = "mb-1";
-      objectiveItem.innerHTML = `
-        <p>${objective.goal}</p>
-      `;
+      objectiveItem.innerHTML = `<p>${objective.goal}</p>`;
       objectiveContainer.appendChild(objectiveItem);
     });
 
@@ -29,8 +27,8 @@ fetch("profile.json")
       educationItem.className = "mb-1";
       educationItem.innerHTML = `
         <div class="d-flex justify-content-between mb-1">
-          <div><strong> ${education.university}</strong></div>
-          <div><strong> ${education.location}</strong></div>
+          <div><strong>${education.university}</strong></div>
+          <div><strong>${education.location}</strong></div>
         </div>
         <div class="d-flex justify-content-between mb-1">
           <div><i>${education.program}</i></div>
@@ -46,11 +44,11 @@ fetch("profile.json")
     const skillsItem = document.createElement("div");
     skillsItem.className = "mb-1";
     skillsItem.innerHTML = `
-    <div><strong>Markup & Styling:</strong> ${technicalSkills.markup_and_styling.join(", ")}</div>
-    <div><strong>Programming Languages:</strong> ${technicalSkills.programming_languages.join(", ")}</div>
-    <div><strong>Frameworks:</strong> ${technicalSkills.frameworks.join(", ")}</div>
-    <div><strong>Database Management Systems:</strong> ${technicalSkills.database_management_systems.join(", ")}</div>
-  `;
+      <div><strong>Markup & Styling:</strong> ${technicalSkills.markup_and_styling.join(", ")}</div>
+      <div><strong>Programming Languages:</strong> ${technicalSkills.programming_languages.join(", ")}</div>
+      <div><strong>Frameworks:</strong> ${technicalSkills.frameworks.join(", ")}</div>
+      <div><strong>Database Management Systems:</strong> ${technicalSkills.database_management_systems.join(", ")}</div>
+    `;
     skillsContainer.appendChild(skillsItem);
 
     // Hiển thị kinh nghiệm chuyên môn
@@ -58,13 +56,19 @@ fetch("profile.json")
 
     // Hàm chuyển tên dự án về title case
     function toTitleCase(str) {
+      const exceptions = ["API", "HTML", "CSS", "JS"];
       return str
         .toLowerCase() // Chuyển toàn bộ về chữ thường
         .split(' ') // Tách tên dự án thành các từ
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Viết hoa chữ cái đầu của mỗi từ
+        .map(word => {
+          // Nếu từ nằm trong exceptions, không thay đổi
+          return exceptions.includes(word.toUpperCase()) 
+            ? word.toUpperCase() 
+            : word.charAt(0).toUpperCase() + word.slice(1);
+        }) // Viết hoa chữ cái đầu của mỗi từ, ngoại trừ các từ trong exceptions
         .join(' '); // Ghép lại thành tên dự án
     }
-    
+
     // Sắp xếp các dự án theo start_date từ mới đến cũ
     data.projects.sort((a, b) => {
       // Chuyển đổi ngày thành đối tượng Date để so sánh
@@ -72,7 +76,7 @@ fetch("profile.json")
       const dateB = new Date(b.start_date.split('/').reverse().join('-')); // Đổi từ MM/DD/YYYY thành YYYY-MM-DD
       return dateB - dateA; // Sắp xếp từ mới đến cũ
     });
-    
+
     // Hiển thị các dự án đã sắp xếp
     data.projects.forEach(project => {
       const projectItem = document.createElement("div");
@@ -104,8 +108,6 @@ fetch("profile.json")
       `;
       experienceContainer.appendChild(projectItem);
     });
-    
-
   })
   .catch(error => {
     console.error("Không thể tải file JSON:", error);
