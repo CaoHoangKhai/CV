@@ -120,7 +120,7 @@ fetch("profile.json")
         projectItem.innerHTML = `
         <div class="row mb-2 align-items-center">
           <div class="col-12 col-md-8">
-            <strong>Project</strong>: <i>${projectTitle}</i> 
+            <strong>Project</strong>: <strong>${projectTitle}</strong> 
             <span class="text-muted small">( ${project.members} ${memberLabel} )</span>
           </div>
           <div class="col-12 col-md-4 text-md-end">
