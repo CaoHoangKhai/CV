@@ -58,56 +58,99 @@ fetch("profile.json")
     function toTitleCase(str) {
       const exceptions = ["API", "HTML", "CSS", "JS"];
       return str
-        .toLowerCase() // Chuyển toàn bộ về chữ thường
-        .split(' ') // Tách tên dự án thành các từ
-        .map(word => {
-          // Nếu từ nằm trong exceptions, không thay đổi
-          return exceptions.includes(word.toUpperCase()) 
-            ? word.toUpperCase() 
-            : word.charAt(0).toUpperCase() + word.slice(1);
-        }) // Viết hoa chữ cái đầu của mỗi từ, ngoại trừ các từ trong exceptions
-        .join(' '); // Ghép lại thành tên dự án
+        .toLowerCase()
+        .split(' ')
+        .map(word => exceptions.includes(word.toUpperCase())
+          ? word.toUpperCase()
+          : word.charAt(0).toUpperCase() + word.slice(1)
+        )
+        .join(' ');
     }
 
     // Sắp xếp các dự án theo start_date từ mới đến cũ
     data.projects.sort((a, b) => {
-      // Chuyển đổi ngày thành đối tượng Date để so sánh
-      const dateA = new Date(a.start_date.split('/').reverse().join('-')); // Đổi từ MM/DD/YYYY thành YYYY-MM-DD
-      const dateB = new Date(b.start_date.split('/').reverse().join('-')); // Đổi từ MM/DD/YYYY thành YYYY-MM-DD
-      return dateB - dateA; // Sắp xếp từ mới đến cũ
+      const dateA = new Date(a.start_date.split('/').reverse().join('-'));
+      const dateB = new Date(b.start_date.split('/').reverse().join('-'));
+      return dateB - dateA;
     });
 
-    // Hiển thị các dự án đã sắp xếp
     data.projects.forEach(project => {
       const projectItem = document.createElement("div");
       projectItem.className = "mb-4";
-    
-      // Chọn 'member' hoặc 'members' tùy theo số lượng
+
       const memberLabel = project.members === 1 ? "member" : "members";
-    
-      // Chuyển title về title case nếu nó viết hoa toàn bộ
       const projectTitle = toTitleCase(project.title);
-    
-      projectItem.innerHTML = `
-        <div class="d-flex justify-content-between mb-1">
-          <div>
-            <strong>Project: </strong><i>${projectTitle}</i> <span class="text-muted small">( ${project.members} ${memberLabel} )</span>
+
+      // Kiểm tra độ rộng container
+      const parentWidth = experienceContainer.offsetWidth;
+      const isFullWidth = parentWidth >= 768; // Ngưỡng 768px (tablet trở lên)
+
+      if (isFullWidth) {
+        // Nếu container rộng, bố cục 2 bên: tên + member | thời gian
+        projectItem.innerHTML = `
+        <div class="row mb-2 align-items-center">
+          <div class="col-12 col-md-8">
+            <strong>${projectTitle}</strong> 
+            <span class="text-muted small">( ${project.members} ${memberLabel} )</span>
           </div>
-          <div><i>${project.start_date} - ${project.end_date}</i></div>
+          <div class="col-12 col-md-4 text-md-end">
+            <i>${project.start_date} - ${project.end_date}</i>
+          </div>
         </div>
-        <div class="mb-2"><strong>Description: </strong>${project.description}</div>
+      
+        <div class="mb-2"><strong>Description:</strong> ${project.description}</div>
+      
         <div class="mb-2">
           <strong>Technologies:</strong> 
-          ${project.technologies.frontend ? `Frontend: ${project.technologies.frontend}. ` : ""}
-          ${project.technologies.backend ? `Backend: ${project.technologies.backend}. ` : ""}
-          ${project.technologies.database ? `Database: ${project.technologies.database}. ` : ""}
-          ${project.technologies.tools ? `Tools: ${project.technologies.tools}.` : ""}
+          <ul>
+            ${project.technologies.frontend ? `<li><strong>Frontend:</strong> ${project.technologies.frontend}</li>` : ""}
+            ${project.technologies.backend ? `<li><strong>Backend:</strong> ${project.technologies.backend}</li>` : ""}
+            ${project.technologies.database ? `<li><strong>Database:</strong> ${project.technologies.database}</li>` : ""}
+            ${project.technologies.tools ? `<li><strong>Tools:</strong> ${project.technologies.tools}</li>` : ""}
+          </ul>
         </div>
-        <div><strong>Repository:</strong> <a href="${project.repository}" target="_blank">GitHub</a></div>
+      
+        <div>
+          <strong>Repository:</strong> <a href="${project.repository}" target="_blank">GitHub</a>
+        </div>
         <hr>
       `;
+      } else {
+        // Nếu container hẹp, bố cục xuống dòng
+        projectItem.innerHTML = `
+        <div class="row mb-2 align-items-center">
+          <div class="col-12 col-md-8">
+            <strong>Project</strong>: <i>${projectTitle}</i> 
+            <span class="text-muted small">( ${project.members} ${memberLabel} )</span>
+          </div>
+          <div class="col-12 col-md-4 text-md-end">
+            <i>${project.start_date} - ${project.end_date}</i>
+          </div>
+        </div>
+      
+        <div class="mb-2"><strong>Description:</strong> ${project.description}</div>
+      
+        <div class="mb-2">
+          <strong>Technologies:</strong> 
+          <ul>
+            ${project.technologies.frontend ? `<li><strong>Frontend:</strong> ${project.technologies.frontend}</li>` : ""}
+            ${project.technologies.backend ? `<li><strong>Backend:</strong> ${project.technologies.backend}</li>` : ""}
+            ${project.technologies.database ? `<li><strong>Database:</strong> ${project.technologies.database}</li>` : ""}
+            ${project.technologies.tools ? `<li><strong>Tools:</strong> ${project.technologies.tools}</li>` : ""}
+          </ul>
+        </div>
+      
+        <div>
+          <strong>Repository:</strong> <a href="${project.repository}" target="_blank">GitHub</a>
+        </div>
+        <hr>
+      `;
+
+      }
+
       experienceContainer.appendChild(projectItem);
     });
+
   })
   .catch(error => {
     console.error("Không thể tải file JSON:", error);
