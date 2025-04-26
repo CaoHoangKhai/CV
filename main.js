@@ -52,6 +52,60 @@ fetch("profile.json")
     <div><strong>Database Management Systems:</strong> ${technicalSkills.database_management_systems.join(", ")}</div>
   `;
     skillsContainer.appendChild(skillsItem);
+
+    // Hiển thị kinh nghiệm chuyên môn
+    const experienceContainer = document.getElementById("professional-experience-list");
+
+    // Hàm chuyển tên dự án về title case
+    function toTitleCase(str) {
+      return str
+        .toLowerCase() // Chuyển toàn bộ về chữ thường
+        .split(' ') // Tách tên dự án thành các từ
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Viết hoa chữ cái đầu của mỗi từ
+        .join(' '); // Ghép lại thành tên dự án
+    }
+    
+    // Sắp xếp các dự án theo start_date từ mới đến cũ
+    data.projects.sort((a, b) => {
+      // Chuyển đổi ngày thành đối tượng Date để so sánh
+      const dateA = new Date(a.start_date.split('/').reverse().join('-')); // Đổi từ MM/DD/YYYY thành YYYY-MM-DD
+      const dateB = new Date(b.start_date.split('/').reverse().join('-')); // Đổi từ MM/DD/YYYY thành YYYY-MM-DD
+      return dateB - dateA; // Sắp xếp từ mới đến cũ
+    });
+    
+    // Hiển thị các dự án đã sắp xếp
+    data.projects.forEach(project => {
+      const projectItem = document.createElement("div");
+      projectItem.className = "mb-4";
+    
+      // Chọn 'member' hoặc 'members' tùy theo số lượng
+      const memberLabel = project.members === 1 ? "member" : "members";
+    
+      // Chuyển title về title case nếu nó viết hoa toàn bộ
+      const projectTitle = toTitleCase(project.title);
+    
+      projectItem.innerHTML = `
+        <div class="d-flex justify-content-between mb-1">
+          <div>
+            <strong>Project: </strong><i>${projectTitle}</i> <span class="text-muted small">( ${project.members} ${memberLabel} )</span>
+          </div>
+          <div><i>${project.start_date} - ${project.end_date}</i></div>
+        </div>
+        <div class="mb-2"><strong>Description: </strong>${project.description}</div>
+        <div class="mb-2">
+          <strong>Technologies:</strong> 
+          ${project.technologies.frontend ? `Frontend: ${project.technologies.frontend}. ` : ""}
+          ${project.technologies.backend ? `Backend: ${project.technologies.backend}. ` : ""}
+          ${project.technologies.database ? `Database: ${project.technologies.database}. ` : ""}
+          ${project.technologies.tools ? `Tools: ${project.technologies.tools}.` : ""}
+        </div>
+        <div><strong>Repository:</strong> <a href="${project.repository}" target="_blank">${project.repository}</a></div>
+        <hr>
+      `;
+      experienceContainer.appendChild(projectItem);
+    });
+    
+
   })
   .catch(error => {
     console.error("Không thể tải file JSON:", error);
