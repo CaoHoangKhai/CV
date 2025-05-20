@@ -1,0 +1,42 @@
+thiết kế rồi mới sinh cho người mẫu mặc vào
+~ Đăng Nhập
++ Email
++ Mật Khẩu
+~ Đăng Ký
++ Họ Tên
++ Số Điện Thoại
++ Mật Khẩu ( Mã hóa)
++ Email
++ Thành Phố
++ Quận / Huyện
++ Địa Chỉ
+
+** Admin **
+1. Trang Tổng quan
++ Thống kê doanh thu của Người dùng hiện có, sản phẩm hiện có, order hiện có ( theo tháng ), doanh thu ( theo tháng hiện tại)
++ Hiển thị đơn hàng mới nhất
++ Sản phẩm bán chạy nhất
++ Biểu đồ doanh thu theo ngày của tháng hiện tại có thể coi của những 3 tháng trước gần nhất, còn lại là theo năm
++ Sản phẩm được yêu thích nhất
++ Có chỗ bản đồ để xem người dùng phân bố nhiều ở đâu
+Cài đặt truyền thông của trang (cơ sở dữ liệu của nó chưa liên kết với cái nào cả)
++ Facebook
++ Youtube
++ Pinterest
++ Linkedin
+
+2. Trang Người Dùng
++ Danh sách ( tìm kiếm theo tên, email, số điện thoại)
+    - Chia 2 phần là Còn hoạt động, bị hủy kích họat
++ Xem chi tiết
++ Có thể hủy kích hoạt chứ ko thay đổi gì cả
+3. Trang sản phẩm
++ Thêm sản phẩm
++ Chỉnh sửa sản phẩm:
+    + Thay đổi thông tin
+    + Thêm hình ảnh
+    + 
+Trang cá nhân của Admin
++ Thông tin
++ Đổi mật Khẩu
++ 
